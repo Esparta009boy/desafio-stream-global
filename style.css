@@ -1,3 +1,4 @@
+
 :root {
     --bg-color: #0d1117;
     --card-bg: #161b22;
@@ -15,16 +16,28 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+}
+
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
     line-height: 1.6;
+    overflow-wrap: break-word;
+}
+
+img {
+    max-width: 100%;
 }
 
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
     padding: 20px 50px;
     background-color: var(--card-bg);
     border-bottom: 1px solid var(--border-color);
@@ -43,10 +56,17 @@ header {
     color: var(--accent-color);
 }
 
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
 nav a {
     color: var(--text-color);
     text-decoration: none;
-    margin-left: 20px;
     font-size: 0.95rem;
     transition: color 0.3s;
 }
@@ -58,51 +78,70 @@ nav a:hover {
 .hero {
     padding: 80px 20px;
     text-align: center;
-    background: radial-gradient(circle at center, #1f6feb15 0%, transparent 70%);
+    background: radial-gradient(
+        circle at center,
+        #1f6feb15 0%,
+        transparent 70%
+    );
+}
+
+.hero-content {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
 }
 
 .hero-content h1 {
+    max-width: 900px;
+    margin: 0 auto 20px;
     font-size: 2.8rem;
+    line-height: 1.2;
     color: #fff;
-    margin-bottom: 15px;
 }
 
 .hero-content p {
+    max-width: 760px;
+    margin: 0 auto 30px;
     font-size: 1.2rem;
-    max-width: 700px;
-    margin: 0 auto 40px auto;
+    line-height: 1.7;
 }
 
 .hero-stats {
     display: flex;
     justify-content: center;
+    align-items: stretch;
     gap: 30px;
     flex-wrap: wrap;
+    margin: 30px 0;
 }
 
 .stat-box {
+    flex: 1 1 200px;
+    max-width: 320px;
+    min-width: 0;
+    padding: 20px 30px;
     background: var(--card-bg);
     border: 1px solid var(--border-color);
-    padding: 20px 30px;
     border-radius: 8px;
-    min-width: 200px;
 }
 
 .stat-box h3 {
+    margin-bottom: 5px;
     color: var(--accent-color);
     font-size: 1.8rem;
-    margin-bottom: 5px;
 }
 
 .container {
+    width: 100%;
     max-width: 1100px;
+    min-width: 0;
     margin: 0 auto;
     padding: 60px 20px;
 }
 
 .bg-alt {
-    background-color: var(--alt-bg);
     max-width: 100%;
+    background-color: var(--alt-bg);
 }
 
 .bg-alt .container {
@@ -110,25 +149,36 @@ nav a:hover {
 }
 
 h2 {
-    color: #fff;
     margin-bottom: 20px;
+    color: #fff;
     font-size: 1.8rem;
+    line-height: 1.35;
+}
+
+.container > h3 {
+    margin: 30px 0 16px;
+    color: #fff;
+    line-height: 1.4;
 }
 
 .section-desc {
     margin-bottom: 30px;
+    line-height: 1.75;
 }
 
 .card-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+    align-items: stretch;
     gap: 25px;
 }
 
 .card {
+    min-width: 0;
+    height: 100%;
+    padding: 30px;
     background: var(--card-bg);
     border: 1px solid var(--border-color);
-    padding: 30px;
     border-radius: 8px;
     transition: transform 0.3s, border-color 0.3s;
 }
@@ -138,49 +188,75 @@ h2 {
     border-color: var(--accent-color);
 }
 
+.card p,
+.region-card p {
+    line-height: 1.75;
+}
+
 .icon-card {
-    font-size: 2rem;
-    color: var(--accent-color);
     margin-bottom: 15px;
+    color: var(--accent-color);
+    font-size: 2rem;
 }
 
 .regions-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+    align-items: stretch;
     gap: 20px;
 }
 
 .region-card {
+    min-width: 0;
+    height: 100%;
+    padding: 25px;
     background: var(--card-bg);
     border: 1px solid var(--border-color);
-    padding: 25px;
     border-radius: 8px;
     text-align: center;
 }
 
 .region-card i {
-    font-size: 2.5rem;
-    color: var(--accent-color);
     margin-bottom: 15px;
+    color: var(--accent-color);
+    font-size: 2.5rem;
+}
+
+.architecture-flow {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin: 20px 0 30px;
+    padding-left: 28px;
+}
+
+.architecture-flow li {
+    padding-left: 8px;
+    line-height: 1.75;
 }
 
 .table-wrapper {
+    width: 100%;
+    margin: 20px 0 30px;
     overflow-x: auto;
+    border-radius: 8px;
 }
 
 table {
     width: 100%;
+    min-width: 650px;
     border-collapse: collapse;
     background: var(--card-bg);
-    border-radius: 8px;
-    overflow: hidden;
     border: 1px solid var(--border-color);
 }
 
-th, td {
+th,
+td {
     padding: 15px 20px;
-    text-align: left;
     border-bottom: 1px solid var(--border-color);
+    text-align: left;
+    vertical-align: top;
+    line-height: 1.6;
 }
 
 th {
@@ -191,8 +267,8 @@ th {
 .badge {
     padding: 5px 10px;
     border-radius: 4px;
-    font-weight: bold;
     font-size: 0.85rem;
+    font-weight: bold;
 }
 
 .badge.ap {
@@ -205,10 +281,14 @@ th {
     color: #fff;
 }
 
+/* Simulador de rotas */
+
 .simulator-box {
+    width: 100%;
+    min-width: 0;
+    padding: 30px;
     background: var(--card-bg);
     border: 1px solid var(--border-color);
-    padding: 30px;
     border-radius: 8px;
     text-align: center;
 }
@@ -216,19 +296,24 @@ th {
 .sim-controls {
     display: flex;
     justify-content: center;
-    gap: 15px;
+    align-items: stretch;
     flex-wrap: wrap;
+    gap: 15px;
     margin-bottom: 25px;
 }
 
 .sim-btn {
+    max-width: 100%;
+    padding: 10px 20px;
     background-color: #21262d;
     color: #fff;
     border: 1px solid var(--border-color);
-    padding: 10px 20px;
     border-radius: 6px;
     cursor: pointer;
     font-weight: 600;
+    line-height: 1.5;
+    white-space: normal;
+    overflow-wrap: anywhere;
     transition: background 0.3s, border-color 0.3s;
 }
 
@@ -237,115 +322,174 @@ th {
     border-color: var(--accent-color);
 }
 
+.sim-btn:focus-visible {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 3px;
+}
+
+/* Resultado do simulador: conteúdo em coluna */
+
 .sim-output {
-    background: var(--bg-color);
-    border: 1px solid var(--border-color);
-    padding: 20px;
-    border-radius: 6px;
-    font-family: monospace;
-    color: var(--accent-color);
-    min-height: 80px;
     display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-footer {
-    text-align: center;
-    padding: 30px;
-    background-color: var(--card-bg);
-    border-top: 1px solid var(--border-color);
-    font-size: 0.9rem;
-}
-html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 100px;
-}
-
-body {
-    overflow-wrap: break-word;
-}
-
-header {
-    gap: 24px;
-    flex-wrap: wrap;
-}
-
-nav {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 18px;
-    flex-wrap: wrap;
-}
-
-nav a {
-    margin-left: 0;
-}
-
-.hero-content {
-    width: 100%;
-    max-width: 1100px;
-    margin: 0 auto;
-}
-
-.hero-content h1 {
-    max-width: 900px;
-    margin: 0 auto 20px;
-    line-height: 1.2;
-}
-
-.hero-content > p {
-    max-width: 760px;
-    margin: 0 auto 30px;
-}
-
-.hero-stats {
+    flex-direction: column;
     align-items: stretch;
-    margin: 30px 0;
-}
-
-.stat-box {
-    flex: 1 1 200px;
-    max-width: 320px;
-}
-
-.container {
+    justify-content: flex-start;
+    gap: 14px;
     width: 100%;
     min-width: 0;
+    min-height: 80px;
+    padding: 20px;
+    background: var(--bg-color);
+    color: var(--accent-color);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    text-align: left;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
 }
 
-.container > h2 {
-    line-height: 1.35;
-}
-
-.container > h3 {
+.sim-output h3 {
+    margin: 0;
     color: #fff;
-    margin: 30px 0 16px;
+    font-size: 1.15rem;
     line-height: 1.4;
 }
 
-.card-grid,
-.regions-grid {
-    align-items: stretch;
+.sim-output ol {
+    margin: 0;
+    padding-left: 26px;
 }
 
-.card,
-.region-card {
-    min-width: 0;
-    height: 100%;
+.sim-output li {
+    margin-bottom: 8px;
+    padding-left: 5px;
+    line-height: 1.7;
 }
 
-.card p,
-.region-card p,
-.section-desc {
-    line-height: 1.75;
+.sim-output p {
+    margin: 0;
+    overflow-wrap: anywhere;
 }
 
-.architecture-flow {
-    margin: 20px 0 30px;
-    padding-left: 28px;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
+.sim-output p:last-child {
+    padding-top: 12px;
+    border-top: 1px solid var(--border-color);
+    color: #9da7b3;
+    font-size: 0.9rem;
+}
+
+footer {
+    padding: 30px;
+    background-color: var(--card-bg);
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+footer p {
+    line-height: 1.7;
+}
+
+/* Tablets e celulares */
+
+@media (max-width: 768px) {
+    header {
+        position: static;
+        justify-content: center;
+        padding: 20px;
+        text-align: center;
+    }
+
+    nav {
+        width: 100%;
+        gap: 12px 18px;
+    }
+
+    .hero {
+        padding: 55px 20px;
+    }
+
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    .container {
+        padding: 40px 20px;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    .card-grid,
+    .regions-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .card,
+    .region-card {
+        padding: 22px;
+    }
+
+    .simulator-box {
+        padding: 18px;
+    }
+
+    .sim-controls {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .sim-btn {
+        width: 100%;
+    }
+}
+
+/* Celulares pequenos */
+
+@media (max-width: 420px) {
+    .logo {
+        font-size: 1.3rem;
+    }
+
+    .hero-content h1 {
+        font-size: 1.7rem;
+    }
+
+    .hero-stats {
+        gap: 15px;
+    }
+
+    .stat-box {
+        width: 100%;
+        min-width: 0;
+        max-width: none;
+    }
+
+    .container {
+        padding: 32px 16px;
+    }
+
+    .simulator-box {
+        padding: 12px;
+    }
+
+    .sim-output {
+        padding: 14px;
+        gap: 12px;
+    }
+
+    .sim-output ol {
+        padding-left: 22px;
+    }
+
+    footer {
+        padding: 24px 16px;
+    }
 }
