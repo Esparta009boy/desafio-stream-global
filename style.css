@@ -257,3 +257,95 @@ footer {
     border-top: 1px solid var(--border-color);
     font-size: 0.9rem;
 }
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+}
+
+body {
+    overflow-wrap: break-word;
+}
+
+header {
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+nav a {
+    margin-left: 0;
+}
+
+.hero-content {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.hero-content h1 {
+    max-width: 900px;
+    margin: 0 auto 20px;
+    line-height: 1.2;
+}
+
+.hero-content > p {
+    max-width: 760px;
+    margin: 0 auto 30px;
+}
+
+.hero-stats {
+    align-items: stretch;
+    margin: 30px 0;
+}
+
+.stat-box {
+    flex: 1 1 200px;
+    max-width: 320px;
+}
+
+.container {
+    width: 100%;
+    min-width: 0;
+}
+
+.container > h2 {
+    line-height: 1.35;
+}
+
+.container > h3 {
+    color: #fff;
+    margin: 30px 0 16px;
+    line-height: 1.4;
+}
+
+.card-grid,
+.regions-grid {
+    align-items: stretch;
+}
+
+.card,
+.region-card {
+    min-width: 0;
+    height: 100%;
+}
+
+.card p,
+.region-card p,
+.section-desc {
+    line-height: 1.75;
+}
+
+.architecture-flow {
+    margin: 20px 0 30px;
+    padding-left: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}

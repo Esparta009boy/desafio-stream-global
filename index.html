@@ -1,152 +1,261 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StreamGlobal | Arquitetura Multi-Região & Cloud Intelligence</title>
+    <meta name="description" content="Proposta de arquitetura multi-região, latência global e armazenamento SAN com NVMe-oF para a StreamGlobal.">
+    <title>StreamGlobal | Arquitetura Cloud Global</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- HEADER -->
     <header>
         <div class="logo">
-            <i class="fa-solid fa-globe"></i> Stream<span>Global</span>
+            <i class="fa-solid fa-globe" aria-hidden="true"></i>
+            Stream<span>Global</span>
         </div>
-        <nav>
+        <nav aria-label="Navegação principal">
             <a href="#diagnostico">Diagnóstico</a>
             <a href="#multiregiao">Multi-Região</a>
-            <a href="#cap">Teorema CAP</a>
-            <a href="#storage">Storage NVMe-oF</a>
-            <a href="#arquitetura">Arquitetura-Alvo</a>
+            <a href="#storage">SAN e NVMe-oF</a>
+            <a href="#arquitetura">Simulador</a>
         </nav>
     </header>
 
-    <!-- HERO SECTION -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Superando a Física na Nuvem Global</h1>
-            <p>Transformando gargalos geográficos e de infraestrutura em alta performance distribuída para Europa, Ásia e Américas[cite: 1, 2].</p>
-            <div class="hero-stats">
-                <div class="stat-box">
-                    <h3>~50 ms</h3>
-                    <p>Latência Global (Edge)</p>
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>StreamGlobal: uma arquitetura preparada para o mundo</h1>
+                <p>
+                    Uma proposta de infraestrutura em nuvem para reduzir os efeitos
+                    da distância geográfica, melhorar o acesso ao conteúdo e diminuir
+                    gargalos de armazenamento.
+                </p>
+                <div class="hero-stats">
+                    <div class="stat-box">
+                        <h3>Multi-região</h3>
+                        <p>Serviços próximos dos usuários</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>CDN / Edge</h3>
+                        <p>Distribuição de conteúdo em cache</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>SAN</h3>
+                        <p>Armazenamento dedicado de alto desempenho</p>
+                    </div>
                 </div>
-                <div class="stat-box">
-                    <h3>NVMe-oF</h3>
-                    <p>SAN All-Flash de Alta IOPS</p>
+                <p><strong>Importante:</strong> esta página apresenta uma arquitetura-alvo proposta.
+                Ela não comprova que essas regiões ou recursos já estejam implantados.</p>
+            </div>
+        </section>
+
+        <section id="diagnostico" class="container">
+            <h2><i class="fa-solid fa-stethoscope" aria-hidden="true"></i>
+                1. Diagnóstico: distância e gargalos de I/O</h2>
+            <div class="card-grid">
+                <article class="card">
+                    <i class="fa-solid fa-route icon-card" aria-hidden="true"></i>
+                    <h3>Latência geográfica</h3>
+                    <p>
+                        Quando as requisições de usuários na Europa e na Ásia precisam
+                        chegar até uma infraestrutura concentrada em São Paulo, a
+                        distância e os caminhos de rede aumentam o tempo de resposta.
+                        TLS, roteamento, filas e processamento também podem contribuir
+                        para a latência observada.
+                    </p>
+                </article>
+                <article class="card">
+                    <i class="fa-solid fa-hard-drive icon-card" aria-hidden="true"></i>
+                    <h3>Gargalo de armazenamento</h3>
+                    <p>
+                        Discos, controladoras, filas de I/O e a rede de armazenamento
+                        podem limitar o desempenho do banco de dados. Uma SAN adequada
+                        pode ajudar a reduzir esses gargalos, dependendo da configuração
+                        e da carga de trabalho.
+                    </p>
+                </article>
+            </div>
+            <p class="section-desc">
+                Os tempos reais devem ser confirmados com medições. Os números do
+                cenário são referências para investigar o problema, não resultados
+                medidos por esta demonstração.
+            </p>
+        </section>
+
+        <section id="multiregiao" class="container bg-alt">
+            <h2><i class="fa-solid fa-network-wired" aria-hidden="true"></i>
+                2. Arquitetura multi-região</h2>
+            <p class="section-desc">
+                Objetivo: atender usuários a partir de pontos de presença e serviços
+                regionais, mantendo uma estratégia definida para dados e operações críticas.
+            </p>
+
+            <div class="regions-grid">
+                <article class="region-card">
+                    <i class="fa-solid fa-earth-europe" aria-hidden="true"></i>
+                    <h4>Europa — Frankfurt</h4>
+                    <p>
+                        CDN/Edge para conteúdo em cache e API regional proposta para
+                        processar requisições próximas dos usuários europeus.
+                    </p>
+                </article>
+                <article class="region-card">
+                    <i class="fa-solid fa-earth-asia" aria-hidden="true"></i>
+                    <h4>Ásia — Singapura</h4>
+                    <p>
+                        Ponto regional proposto para distribuição de conteúdo e
+                        atendimento de requisições compatíveis com os serviços locais.
+                    </p>
+                </article>
+                <article class="region-card">
+                    <i class="fa-solid fa-earth-americas" aria-hidden="true"></i>
+                    <h4>Brasil — São Paulo</h4>
+                    <p>
+                        Região primária proposta para gravações e operações que
+                        precisam de uma fonte de dados autoritativa.
+                    </p>
+                </article>
+            </div>
+
+            <h3>Fluxo proposto de uma requisição</h3>
+            <ol class="architecture-flow">
+                <li><strong>Usuário:</strong> acessa a plataforma a partir de sua região.</li>
+                <li><strong>DNS e CDN/Edge:</strong> direcionam a requisição e entregam conteúdo estático em cache quando possível.</li>
+                <li><strong>API regional:</strong> processa a requisição perto do usuário, quando esse serviço estiver implantado.</li>
+                <li><strong>Réplica de leitura:</strong> fornece dados replicados para consultas compatíveis, considerando o atraso de replicação.</li>
+                <li><strong>Região primária:</strong> recebe gravações e transações que exigem uma fonte de dados central autoritativa.</li>
+            </ol>
+
+            <div class="card">
+                <h3><i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+                    Pontos importantes</h3>
+                <p>
+                    CDN não substitui uma API regional. Réplicas de leitura precisam
+                    ser mantidas e monitoradas. Escritas encaminhadas à região primária
+                    ainda podem sofrer latência geográfica. A solução também exige
+                    estratégia de replicação, segurança, observabilidade, recuperação
+                    de falhas e roteamento.
+                </p>
+            </div>
+        </section>
+
+        <section id="storage" class="container">
+            <h2><i class="fa-solid fa-server" aria-hidden="true"></i>
+                3. SAN e NVMe-oF</h2>
+            <p class="section-desc">
+                Uma Storage Area Network (SAN) conecta servidores a recursos de
+                armazenamento por uma rede dedicada ou logicamente isolada. A tecnologia
+                escolhida deve considerar desempenho, custo, compatibilidade e operação.
+            </p>
+
+            <div class="card-grid">
+                <article class="card">
+                    <i class="fa-solid fa-bolt icon-card" aria-hidden="true"></i>
+                    <h3>NVMe over Fabrics (NVMe-oF)</h3>
+                    <p>
+                        Permite acessar dispositivos NVMe por uma rede de transporte,
+                        como Ethernet com TCP ou RDMA, ou por Fibre Channel com suporte
+                        a NVMe. Pode reduzir a sobrecarga de acesso remoto ao armazenamento
+                        quando a infraestrutura é projetada e configurada para isso.
+                    </p>
+                </article>
+                <article class="card">
+                    <i class="fa-solid fa-network-wired icon-card" aria-hidden="true"></i>
+                    <h3>Fibre Channel</h3>
+                    <p>
+                        É uma tecnologia de rede tradicionalmente usada em SANs,
+                        com infraestrutura e ferramentas próprias para transportar
+                        tráfego de armazenamento. NVMe-oF pode operar sobre Fibre Channel;
+                        portanto, as tecnologias não são necessariamente alternativas
+                        mutuamente exclusivas.
+                    </p>
+                </article>
+            </div>
+
+            <h3>Comparação técnica</h3>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Critério</th>
+                            <th>NVMe-oF sobre Ethernet/TCP</th>
+                            <th>Fibre Channel</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Transporte</td>
+                            <td>Ethernet com TCP/IP</td>
+                            <td>Rede Fibre Channel dedicada ou específica para storage</td>
+                        </tr>
+                        <tr>
+                            <td>Infraestrutura</td>
+                            <td>Pode aproveitar redes Ethernet existentes, se adequadas</td>
+                            <td>Normalmente requer adaptadores, switches e ferramentas compatíveis</td>
+                        </tr>
+                        <tr>
+                            <td>Operação</td>
+                            <td>Depende do projeto de rede, congestionamento e configuração TCP</td>
+                            <td>Depende do projeto Fibre Channel, zonning e configuração SAN</td>
+                        </tr>
+                        <tr>
+                            <td>Escolha indicada</td>
+                            <td>Quando integração com Ethernet e custo operacional são prioridades</td>
+                            <td>Quando a organização já opera uma SAN Fibre Channel e possui equipe e infraestrutura especializadas</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card">
+                <h3>Benefícios esperados e validação</h3>
+                <p>
+                    Uma SAN bem dimensionada e dispositivos NVMe podem melhorar IOPS,
+                    throughput e tempos de acesso, além de separar a capacidade de
+                    computação da capacidade de armazenamento. O resultado depende
+                    dos dispositivos, da rede, da carga de trabalho e das filas de I/O.
+                </p>
+                <p>
+                    Para comprovar ganhos, comparar a linha de base e o ambiente proposto
+                    usando latência p95/p99, IOPS, throughput, utilização e testes
+                    representativos. Não se deve prometer redução para microssegundos
+                    ou um aumento específico sem medições.
+                </p>
+            </div>
+        </section>
+
+        <section id="arquitetura" class="container bg-alt">
+            <h2><i class="fa-solid fa-sitemap" aria-hidden="true"></i>
+                4. Simulador de rotas da arquitetura proposta</h2>
+            <p class="section-desc">
+                Selecione uma origem para visualizar um exemplo conceitual de roteamento.
+                A simulação não consulta servidores reais, não mede latência e não
+                comprova a implantação de regiões.
+            </p>
+
+            <div class="simulator-box">
+                <div class="sim-controls">
+                    <button class="sim-btn" type="button" onclick="simularRota('Europa')">
+                        Usuário de Berlim
+                    </button>
+                    <button class="sim-btn" type="button" onclick="simularRota('Asia')">
+                        Usuário de Tóquio
+                    </button>
+                    <button class="sim-btn" type="button" onclick="simularRota('Brasil')">
+                        Usuário de São Paulo
+                    </button>
                 </div>
-                <div class="stat-box">
-                    <h3>AP / CP</h3>
-                    <p>Estratégia Teorema CAP</p>
+                <div id="sim-output" class="sim-output" aria-live="polite">
+                    <p>Selecione uma região para visualizar o fluxo proposto.</p>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- DIAGNÓSTICO -->
-    <section id="diagnostico" class="container">
-        <h2><i class="fa-solid fa-stethoscope"></i> 1. O Diagnóstico: O problema não é "servidor lento", é física</h2>
-        <div class="card-grid">
-            <div class="card">
-                <i class="fa-solid fa-route icon-card"></i>
-                <h3>Latência Geográfica</h3>
-                <p>As rotas Berlim-São Paulo e Tóquio-São Paulo cobrem cerca de 10.000 km. Pela fibra óptica, o RTT consome ~100ms. Somando handshakes TLS e roteamento, a latência ultrapassa 200ms, uma barreira física insuperável por código[cite: 1].</p>
-            </div>
-            <div class="card">
-                <i class="fa-solid fa-database icon-card"></i>
-                <h3>Gargalo de Infraestrutura</h3>
-                <p>Bancos de dados legados em São Paulo sem rede de armazenamento dedicada limitam drasticamente os IOPS e o throughput, prejudicando a performance geral[cite: 1].</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- MULTI-REGIÃO -->
-    <section id="multiregiao" class="container bg-alt">
-        <h2><i class="fa-solid fa-network-wired"></i> 2. Estratégia Multi-Região</h2>
-        <p class="section-desc">Aproximar a experiência do usuário através de Edge/CDN e roteamento inteligente por geolocalização[cite: 2].</p>
-        <div class="regions-grid">
-            <div class="region-card">
-                <i class="fa-solid fa-server"></i>
-                <h4>Europa (Frankfurt)</h4>
-                <p>Edge/CDN e API Distribuidora para atendimento local com baixa latência.</p>
-            </div>
-            <div class="region-card">
-                <i class="fa-solid fa-server"></i>
-                <h4>Ásia (Singapura)</h4>
-                <p>Cache estático e rotas otimizadas reduzindo o tempo de resposta.</p>
-            </div>
-            <div class="region-card">
-                <i class="fa-solid fa-server"></i>
-                <h4>Brasil (São Paulo)</h4>
-                <p>Escrita Primária e centralização de transações críticas.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- TEOREMA CAP -->
-    <section id="cap" class="container">
-        <h2><i class="fa-solid fa-scale-balanced"></i> 3. Teorema CAP & Decisões Estratégicas</h2>
-        <div class="table-wrapper">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Tipo de Dado</th>
-                        <th>Escolha CAP</th>
-                        <th>Consequência e Comportamento</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Login, Sessão, Catálogo, Conteúdo</strong></td>
-                        <td><span class="badge ap">AP</span> (Disponibilidade + Tolerância a Partições)</td>
-                        <td>Consistência eventual; foco na alta disponibilidade para garantir atendimento sem interrupções[cite: 3].</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Pagamento, Faturamento</strong></td>
-                        <td><span class="badge cp">CP</span> (Consistência + Tolerância a Partições)</td>
-                        <td>Mantido em região central com transações fortes; aceita-se pequena latência em prol da exatidão financeira[cite: 3].</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
-
-    <!-- STORAGE NVME-OF -->
-    <section id="storage" class="container bg-alt">
-        <h2><i class="fa-solid fa-bolt"></i> 4. Armazenamento: SAN com NVMe-oF</h2>
-        <div class="card-grid">
-            <div class="card">
-                <h3>NVMe-oF over TCP</h3>
-                <p>Estende o protocolo NVMe sobre redes Ethernet/TCP existentes, mantendo baixíssima latência com excelente custo-benefício e redução de camadas de protocolo[cite: 3].</p>
-            </div>
-            <div class="card">
-                <h3>Benefícios Diretos</h3>
-                <p>Aumento expressivo de IOPS no banco de dados, queda da latência de milissegundos para microssegundos e desacoplamento entre computação e storage[cite: 3].</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ARQUITETURA ALVO -->
-    <section id="arquitetura" class="container">
-        <h2><i class="fa-solid fa-sitemap"></i> 5. Arquitetura-Alvo (Simulador Interativo)</h2>
-        <p class="section-desc">Teste a rota de acesso global baseada na origem do usuário:</p>
-        
-        <div class="simulator-box">
-            <div class="sim-controls">
-                <button class="sim-btn" onclick="simularRota('Europa')">Usuário de Berlim (Europa)</button>
-                <button class="sim-btn" onclick="simularRota('Asia')">Usuário de Tóquio (Ásia)</button>
-                <button class="sim-btn" onclick="simularRota('Brasil')">Usuário de São Paulo (Brasil)</button>
-            </div>
-            <div id="sim-output" class="sim-output">
-                <p>Selecione uma região acima para visualizar o fluxo de roteamento de infraestrutura.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
     <footer>
-        <p>&copy; 2026 StreamGlobal. Proposta de Infraestrutura Cloud & DevOps.</p>
+        <p>&copy; 2026 StreamGlobal — proposta acadêmica de arquitetura cloud e DevOps.</p>
     </footer>
 
     <script src="script.js"></script>
